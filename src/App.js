@@ -1,9 +1,10 @@
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  ShoppingCartOutlined,
+  PlusCircleOutlined,
+  ShopOutlined
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
@@ -50,17 +51,17 @@ function App() {
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
+              icon: <ShopOutlined />,
               label: "Produtos",
             },
             {
               key: "2",
-              icon: <VideoCameraOutlined />,
+              icon: <PlusCircleOutlined />,
               label: "Cadastrar",
             },
             {
               key: "3",
-              icon: <UploadOutlined />,
+              icon: <ShoppingCartOutlined />,
               label: "Carrinho",
             },
           ]}
