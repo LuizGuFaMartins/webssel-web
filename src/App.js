@@ -21,7 +21,14 @@ function App() {
 
   return (
     <Layout className="layout-container">
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider
+        trigger={null}
+        collapsible
+        collapsed={collapsed}  
+        style={{
+          background: "#61A6AB",
+        }}
+      >
         <div className="demo-logo-vertical">
           {collapsed ? (
             <img
@@ -34,24 +41,27 @@ function App() {
           )}
         </div>
         <Menu
-          theme="dark"
+          style={{
+            background: "#61A6AB",
+            color: "#FFFFFF"
+          }}
           mode="inline"
           defaultSelectedKeys={["1"]}
           items={[
             {
               key: "1",
               icon: <UserOutlined />,
-              label: "nav 1",
+              label: "Produtos",
             },
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              label: "Cadastrar",
             },
             {
               key: "3",
               icon: <UploadOutlined />,
-              label: "nav 3",
+              label: "Carrinho",
             },
           ]}
         />
@@ -60,7 +70,7 @@ function App() {
         <Header
           style={{
             padding: 0,
-            background: colorBgContainer,
+            background: '#ACCEC0',
           }}
         >
           <Button
