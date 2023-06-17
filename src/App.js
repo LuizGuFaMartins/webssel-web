@@ -86,10 +86,12 @@ function App() {
         </Header>
         <Content
           style={{
+            maxHeight: "100%",
             margin: "24px 16px",
             padding: 24,
             minHeight: 280,
-            background: colorBgContainer,
+            background: "white",
+            overflow: "auto",
           }}
         >
           {/* <Routes /> */}
