@@ -1,93 +1,38 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .search-bar {
-    width: 80%;
-    height: 5%;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar input[type="text"] {
-    width: 100%;
-    padding: 8px;
-    border: 2px solid #61A6AB;
-    border-radius: 10px;
-    font-size: 16px;
-    background-color: #F7F7F7;
-  }
-  
-  .search-bar input[type="text"]:focus {
-    outline: none;
-    border-color: #0ee68c;
-  }
-  
-  .boxcard {
-    display: flex;
-    flex-direction: row;
-    height: 80%;
-    width: 95%;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 20px;
-    margin: 0 auto;
-  }
-  .card {
-    border: 2px solid #61A6AB;
-    border-radius: 35px;
-    padding: 10px;
-    width: 30%;
-    height: 60%;
-    max-width: 500px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    min-width: 250px;
-  }
-  
-  .card-body {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 1100px;
+  height: fit-content;
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
 
-  .card-body .remove-button {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .card-body .remove-button button {
-    background-color: #E64141;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-    margin-top: 2%;
-  }
-  
-  .card-body .remove-button button:hover {
-    background-color: darkred;
-  }
+.search-bar {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 20px;
+}
 
-  .card-body .form-groupcod label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2%;
-  }
-  
-  .form-group {
-    margin-bottom: 2%;
-    color: #61A6AB;
-  }
-  
-  .label {
-    font-weight: bold;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+.search-bar input[type="text"] {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  border: 2px solid #61a6ab;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #f7f7f7;
+}
+
+.search-bar input[type="text"]:focus {
+  outline: none;
+}
+
+.boxcard {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

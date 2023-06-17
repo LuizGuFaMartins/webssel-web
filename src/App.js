@@ -86,14 +86,14 @@ function App() {
               fontSize: "16px",
               width: 64,
               height: 64,
+              color: "white",
             }}
           />
         </Header>
         <Content
           style={{
             maxHeight: "100%",
-            margin: "24px 16px",
-            padding: 24,
+            padding: "2.5rem",
             minHeight: 280,
             background: "white",
             overflow: "auto",
