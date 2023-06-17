@@ -1,18 +1,21 @@
 import React from "react";
-import { Route, BrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
-import Home from "./Home";
-import Sobre from "./Sobre";
-import Usuario from "./Usuario";
+import App from "../App";
+import Product from "../pages/products";
+import RegisterProduct from "../pages/registerProduct";
+import ShoppingCart from "../pages/shoppingCart";
 
-const Routes = () => {
-   return(
-       <BrowserRouter>
-           <Route component = { Home }  path="/" exact />
-           <Route component = { Sobre }  path="/sobre" />
-           <Route component = { Usuario }  path="/usuario" />
-       </BrowserRouter>
-   )
-}
+const Routes = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { path: "/produtos", element: <Product /> },
+      { path: "/cadastro", element: <RegisterProduct /> },
+      { path: "/carrinho", element: <ShoppingCart /> },
+    ],
+  },
+]);
 
 export default Routes;
