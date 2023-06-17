@@ -86,6 +86,7 @@ function App() {
               fontSize: "16px",
               width: 64,
               height: 64,
+              color: 'white'
             }}
           />
         </Header>
