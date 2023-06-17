@@ -1,7 +1,6 @@
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined,
   ShoppingCartOutlined,
   PlusCircleOutlined,
   ShopOutlined
@@ -52,17 +51,17 @@ function App() {
             {
               key: "1",
               icon: <ShopOutlined />,
-              label: "Produtos",
+              label: <Button style={{backgroundColor: "transparent", border: "none", color: "#FFFFFF"}} onClick={""}>Produtos</Button>,
             },
             {
               key: "2",
               icon: <PlusCircleOutlined />,
-              label: "Cadastrar",
+              label: <Button style={{backgroundColor: "transparent", border: "none", color: "#FFFFFF"}} onClick={""}>Cadastrar</Button>,
             },
             {
               key: "3",
               icon: <ShoppingCartOutlined />,
-              label: "Carrinho",
+              label: <Button style={{backgroundColor: "transparent", border: "none", color: "#FFFFFF"}} onClick={""}>Carrinho</Button>,
             },
           ]}
         />
