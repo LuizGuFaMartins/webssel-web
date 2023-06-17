@@ -1,19 +1,21 @@
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  ShoppingCartOutlined,
   PlusCircleOutlined,
-  ShopOutlined
+  ShopOutlined,
+  ShoppingCartOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu, theme } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content, Header } from "antd/es/layout/layout";
 import React from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import "./App.css";
 import logoIcon from "./assets/images/logo-icon.png";
 import logo from "./assets/svg/logo.svg";
 
 function App() {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = React.useState(false);
   const {
     token: { colorBgContainer },
@@ -24,7 +26,7 @@ function App() {
       <Sider
         trigger={null}
         collapsible
-        collapsed={collapsed}  
+        collapsed={collapsed}
         style={{
           background: "#61A6AB",
         }}
@@ -37,13 +39,13 @@ function App() {
               alt="logo"
             ></img>
           ) : (
-            <img style={{ width: "90%"}} src={logo} alt="logo"></img>
+            <img style={{ width: "90%" }} src={logo} alt="logo"></img>
           )}
         </div>
         <Menu
           style={{
             background: "#61A6AB",
-            color: "#FFFFFF"
+            color: "#FFFFFF",
           }}
           mode="inline"
           defaultSelectedKeys={["1"]}
@@ -51,17 +53,20 @@ function App() {
             {
               key: "1",
               icon: <ShopOutlined />,
-              label: <Button style={{backgroundColor: "transparent", border: "none", color: "#FFFFFF"}} onClick={""}>Produtos</Button>,
+              label: "Produtos",
+              onClick: () => navigate("/produtos"),
             },
             {
               key: "2",
               icon: <PlusCircleOutlined />,
-              label: <Button style={{backgroundColor: "transparent", border: "none", color: "#FFFFFF"}} onClick={""}>Cadastrar</Button>,
+              label: "Cadastrar",
+              onClick: () => navigate("/cadastro"),
             },
             {
               key: "3",
               icon: <ShoppingCartOutlined />,
-              label: <Button style={{backgroundColor: "transparent", border: "none", color: "#FFFFFF"}} onClick={""}>Carrinho</Button>,
+              label: "Carrinho",
+              onClick: () => navigate("/carrinho"),
             },
           ]}
         />
@@ -70,7 +75,7 @@ function App() {
         <Header
           style={{
             padding: 0,
-            background: '#ACCEC0',
+            background: "#ACCEC0",
           }}
         >
           <Button
@@ -81,6 +86,7 @@ function App() {
               fontSize: "16px",
               width: 64,
               height: 64,
+              color: 'white'
             }}
           />
         </Header>
@@ -94,7 +100,7 @@ function App() {
             overflow: "auto",
           }}
         >
-          {/* <Routes /> */}
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
