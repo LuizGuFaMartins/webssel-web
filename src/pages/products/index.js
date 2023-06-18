@@ -47,6 +47,8 @@ const Product = () => {
         product.productName.toLowerCase().includes(value.toLowerCase())
       );
       setFilteredProducts(filter);
+    } else {
+      setFilteredProducts(products);
     }
   }
 

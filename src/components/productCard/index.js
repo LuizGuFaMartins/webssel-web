@@ -18,7 +18,7 @@ const ProductCard = ({ product, setDeleteId }) => {
       </div>
       <div className="form-group">
         <label>Preço:</label>
-        <span>{product.productPrice}</span>
+        <span>R${product.productPrice}</span>
       </div>
       <div className="buttons-box">
         <button onClick={onDelete}>Excluir</button>
