@@ -1,25 +1,14 @@
-.card {
-  border: 3px solid #61a6ab;
-  border-radius: 35px;
-  padding: 1rem 1.5rem;
-  width: 31%;
-  max-width: 500px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  min-width: 250px;
-  margin: 1rem 0;
-}
-
-.card-body {
+.product-card .card-body {
   display: flex;
   flex-direction: column;
 }
 
-.card-body .buttons-box {
+.product-card .card-body .buttons-box {
   display: flex;
   justify-content: space-between;
 }
 
-.card-body .buttons-box button {
+.product-card .card-body .buttons-box button {
   color: white;
   padding: 8px 16px;
   border: none;
@@ -29,11 +18,11 @@
   width: 46%;
 }
 
-.card-body .buttons-box button:nth-of-type(1) {
+.product-card .card-body .buttons-box button:nth-of-type(1) {
   background-color: #e64141;
 }
 
-.card-body .buttons-box button:nth-of-type(2) {
+.product-card .buttons-box button:nth-of-type(2) {
   background-color: #d3cb09;
 }
 
@@ -51,26 +40,27 @@
   padding: 2%;
 }
 
-.form-group {
+.product-card .form-group {
   margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   margin: 5px 0;
 }
 
-.form-group label {
+.product-card .form-group label {
   color: #61a6ab;
   font-weight: bold;
 }
 
-.form-group:nth-of-type(1) {
+.product-card .form-group:nth-of-type(1) {
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   flex-direction: row;
   margin: 5px 0;
 }
 
-.form-group:nth-of-type(1) span {
+.product-card .form-group:nth-of-type(1) span {
   margin-left: 5px;
 }
