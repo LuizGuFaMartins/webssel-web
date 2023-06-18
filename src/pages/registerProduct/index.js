@@ -2,12 +2,14 @@ import React from "react";
 import uuid from "react-uuid";
 import { io } from "socket.io-client";
 import "./styles.css";
+import { Button, Modal } from "antd";
 
 const RegisterProduct = () => {
   const socket = React.useMemo(() => io("http://localhost:3333"), []);
   const [codigo, setCodigo] = React.useState("");
   const [nome, setNome] = React.useState("");
   const [preco, setPreco] = React.useState("");
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   React.useEffect(() => {
     setCodigo(uuid().split("-")[0]);
@@ -39,6 +41,18 @@ const RegisterProduct = () => {
     setCodigo(uuid().split("-")[0]);
     setNome("");
     setPreco("");
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -74,9 +88,17 @@ const RegisterProduct = () => {
             />
           </div>
           <div className="register-button-box">
-            <button className="register-button" type="submit">
+            <Button className="register-button" onClick={showModal} type="submit">
               Cadastrar produto
-            </button>
+            </Button>
+              <Modal
+                title="ALERTA"
+                visible={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+              >
+                <p>Tem certeza que deseja cadastrar o produto?</p>
+              </Modal>
           </div>
         </form>
       </div>
