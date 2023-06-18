@@ -49,6 +49,7 @@
   flex-wrap: wrap;
   align-content: center;
   gap: 2.4rem;
+  padding: 1rem 0;
 }
 
 .product-card {
