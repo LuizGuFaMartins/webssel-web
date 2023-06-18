@@ -18,7 +18,7 @@ function ShoppingCart() {
         <ItemCard />
       </div>
       <div className="confirmation-card">
-        <div className="card">
+        <div className="cardfinal">
           <div className="card-body">
             <h5 className="card-title">Valor total do pedido:</h5>
             <div className="card-buttons">
