@@ -10,7 +10,6 @@ const onSearch = (value) => console.log(value);
 const Product = () => {
   return (
     <div style={{ marginLeft: 55 }}>
-      <h1>Product</h1>
       <Space direction="vertical">
         <Search
           placeholder="Buscar por nome do produto..."

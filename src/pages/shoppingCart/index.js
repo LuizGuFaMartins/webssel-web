@@ -7,6 +7,7 @@ function ShoppingCart() {
     <div className="container">
       <div className="search-bar">
         <input type="text" placeholder="Buscar por nome do produto..." />
+        <div className="glass"></div>
       </div>
       <div className="boxcard">
         <ItemCard />
