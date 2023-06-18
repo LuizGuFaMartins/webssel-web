@@ -49,3 +49,24 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.confirmation-card{
+  display: flex;
+}
+
+.card-title {
+  color: #61a6ab;
+}
+
+.btn-buy{
+  background-color: #69B655;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 2%;
+}
+
+.btn-buy:hover {
+  background-color: #427435;
+}
