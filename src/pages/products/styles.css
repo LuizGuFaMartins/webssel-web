@@ -1,4 +1,4 @@
-.container {
+.product-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,10 +42,11 @@
   outline: none;
 }
 
-.boxcard {
+.product-boxcard {
   display: flex;
   height: 100%;
   width: 100%;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 2.4rem;
 }

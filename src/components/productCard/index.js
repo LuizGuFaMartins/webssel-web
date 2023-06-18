@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-    <div className="card">
+    <div key={product.productId} className="product-card">
       <div className="card-body">
         <div className="form-group">
           <label>Código do produto:</label>

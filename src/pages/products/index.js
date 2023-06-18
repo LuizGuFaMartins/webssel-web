@@ -10,7 +10,9 @@ const Product = () => {
   const [products, setProducts] = React.useState([]);
 
   React.useEffect(() => {
-    setProducts([]);
+    // socket.on("connect", () => {
+    // });
+    listProducts();
     function receiveProducts(prods) {
       setProducts([...prods]);
     }
@@ -18,19 +20,21 @@ const Product = () => {
     socket.on("refreshProductsList", (prods) => {
       receiveProducts(prods);
     });
-  }, []);
+  }, [socket]);
+
+  function listProducts() {
+    socket.emit("listProducts");
+  }
 
   return (
-    <div className="container">
+    <div className="product-container">
       <div className="search-bar">
         <input type="text" placeholder="Buscar por nome do produto..." />
         <div className="glass"></div>
       </div>
-      <div className="boxcard">
+      <div className="product-boxcard">
         {products.map((prod) => (
-          <div key={prod.productId}>
-            <ProductCard product={prod} />
-          </div>
+          <ProductCard product={prod} />
         ))}
       </div>
     </div>
