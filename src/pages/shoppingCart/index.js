@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCard from "../../components/itemCard";
 import "./styles.css";
+import { Button, Modal } from 'antd';
 
 function ShoppingCart() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="container">
       <div className="search-bar">
@@ -22,7 +37,17 @@ function ShoppingCart() {
           <div className="card-body">
             <h5 className="card-title">Valor total do pedido:</h5>
             <div className="card-buttons">
-              <button className="btn-buy">Finalizar Pedido</button>
+              <Button type="primary" onClick={showModal} className="btn-buy">
+                Finalizar Pedido
+              </Button>
+              <Modal
+                title="Tem certeza que deseja finalizar o pedido?"
+                visible={isModalOpen}
+                onOk={handleOk}
+                onCancel={handleCancel}
+              >
+                <p>Conteúdo do modal...</p>
+              </Modal>
             </div>
           </div>
         </div>
