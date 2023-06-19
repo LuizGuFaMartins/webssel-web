@@ -1,10 +1,24 @@
 import React from "react";
 import "./styles.css";
+import { Button, Modal } from "antd";
 
 const ItemCard = ({ item, setDeleteId }) => {
+const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   function onDelete() {
     setDeleteId(item.itemId);
   }
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(item.itemId);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="card-body">
@@ -29,7 +43,17 @@ const ItemCard = ({ item, setDeleteId }) => {
         <span>R${item.itemQuantity * item.product.productPrice}</span>
       </div>
       <div className="remove-button">
-        <button onClick={onDelete}>Remover do carrinho</button>
+      <Button className="register-button" onClick={showModal} type="submit">
+            Cadastrar produto
+        </Button>
+          <Modal
+            title="ALERTA"
+            visible={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <p>Tem certeza que deseja remover o produto do carinho?</p>
+        </Modal>
       </div>
     </div>
   );
