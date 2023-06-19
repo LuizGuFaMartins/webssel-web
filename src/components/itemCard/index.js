@@ -43,8 +43,8 @@ const [isModalOpen, setIsModalOpen] = React.useState(false);
         <span>R${item.itemQuantity * item.product.productPrice}</span>
       </div>
       <div className="remove-button">
-      <Button className="register-button" onClick={showModal} type="submit">
-            Cadastrar produto
+      <Button className="remo-button" onClick={showModal} type="submit">
+            ALERTA
         </Button>
           <Modal
             title="ALERTA"
