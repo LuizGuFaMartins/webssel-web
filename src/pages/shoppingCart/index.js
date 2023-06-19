@@ -97,12 +97,12 @@ function ShoppingCart() {
                 Finalizar Pedido
               </Button>
               <Modal
-                title="Tem certeza que deseja finalizar o pedido?"
+                title="ALERTA"
                 visible={isModalOpen}
                 onOk={handleOk}
                 onCancel={handleCancel}
               >
-                <p>Conteúdo do modal...</p>
+                <p>Deseja finalizar sua compra?</p>
               </Modal>
             </div>
           </div>
