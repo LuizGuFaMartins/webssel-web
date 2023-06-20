@@ -17,6 +17,7 @@ const Product = () => {
     });
 
     function receiveProducts(prods) {
+      console.log(prods);
       setProducts([...prods]);
       setFilteredProducts([...prods]);
     }

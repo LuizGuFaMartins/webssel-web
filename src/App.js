@@ -112,6 +112,7 @@ function App() {
             minHeight: 280,
             background: "white",
             overflow: "auto",
+            position: "relative",
           }}
         >
           <Outlet />

@@ -1,8 +1,8 @@
+import { Modal } from "antd";
 import React from "react";
 import uuid from "react-uuid";
 import { io } from "socket.io-client";
 import "./styles.css";
-import { Button, Modal } from "antd";
 
 const RegisterProduct = () => {
   const socket = React.useMemo(() => io("http://localhost:3333"), []);
@@ -88,17 +88,31 @@ const RegisterProduct = () => {
             />
           </div>
           <div className="register-button-box">
-            <Button className="register-button" onClick={showModal} type="submit">
+            <button type="primary" onClick={showModal} className="btn-buy">
               Cadastrar produto
-            </Button>
-              <Modal
-                title="ALERTA"
-                visible={isModalOpen}
-                onOk={handleOk}
-                onCancel={handleCancel}
-              >
-                <p>Tem certeza que deseja cadastrar o produto?</p>
-              </Modal>
+            </button>
+            <Modal
+              title={null}
+              open={isModalOpen}
+              footer={null}
+              className="register-product-modal"
+              onOk={handleOk}
+              onCancel={handleCancel}
+              bodyStyle={{
+                width: "100%",
+                borderRadius: 35,
+                textAlign: "center",
+                padding: 0,
+              }}
+            >
+              <p className="modal-text">
+                Tem certeza que deseja remover esse item do carrinho?
+              </p>
+              <div className="buttons-box">
+                <button onClick={handleCancel}>Cancelar</button>
+                <button onOk={handleOk}>Remover</button>
+              </div>
+            </Modal>
           </div>
         </form>
       </div>

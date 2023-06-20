@@ -1,9 +1,9 @@
+import { Modal } from "antd";
 import React from "react";
 import "./styles.css";
-import { Button, Modal } from "antd";
 
 const ItemCard = ({ item, setDeleteId }) => {
-const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   function onDelete() {
     setDeleteId(item.itemId);
@@ -43,16 +43,30 @@ const [isModalOpen, setIsModalOpen] = React.useState(false);
         <span>R${item.itemQuantity * item.product.productPrice}</span>
       </div>
       <div className="remove-button">
-      <Button className="remo-button" onClick={showModal} type="submit">
-            ALERTA
-        </Button>
-          <Modal
-            title="ALERTA"
-            visible={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <p>Tem certeza que deseja remover o produto do carinho?</p>
+        <button type="primary" onClick={showModal} className="btn-buy">
+          Remover do carrinho
+        </button>
+        <Modal
+          title={null}
+          open={isModalOpen}
+          footer={null}
+          className="shoppincart-modal-remove-item"
+          onOk={handleOk}
+          onCancel={handleCancel}
+          bodyStyle={{
+            width: "100%",
+            borderRadius: 35,
+            textAlign: "center",
+            padding: 0,
+          }}
+        >
+          <p className="modal-text">
+            Tem certeza que deseja remover esse item do carrinho?
+          </p>
+          <div className="buttons-box">
+            <button onClick={handleCancel}>Cancelar</button>
+            <button onOk={handleOk}>Remover</button>
+          </div>
         </Modal>
       </div>
     </div>

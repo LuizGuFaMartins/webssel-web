@@ -56,11 +56,52 @@
   background-color: #69b655;
   color: white;
   cursor: pointer;
-  outline: 0;
+  outline: none;
   border: 0;
   margin-top: 150px;
 }
 
 .register-button:hover {
   background-color: #427435;
+}
+
+.register-product-modal {
+  border: 3px solid #61a6ab;
+  border-radius: 20px;
+  padding: 0;
+}
+
+.register-product-modal p {
+  font-size: 18px;
+  padding: 20px 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.register-product-modal button {
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 2%;
+  cursor: pointer;
+  width: 46%;
+  max-width: 200px;
+  margin: 0 5px;
+}
+
+.register-product-modal .buttons-box button:nth-of-type(1) {
+  background-color: #e64141;
+}
+
+.register-product-modal .buttons-box button:nth-of-type(2) {
+  background-color: #69b655;
+}
+
+.register-product-modal .buttons-box button:nth-of-type(1):hover {
+  background-color: darkred;
+}
+
+.register-product-modal .buttons-box button:nth-of-type(2):hover {
+  background-color: #3b6835;
 }

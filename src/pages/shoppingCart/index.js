@@ -1,4 +1,4 @@
-import { Button, Modal } from "antd";
+import { Modal } from "antd";
 import React from "react";
 import { io } from "socket.io-client";
 import ItemCard from "../../components/itemCard";
@@ -12,19 +12,20 @@ function ShoppingCart() {
   const [search, setSearch] = React.useState("");
   const [deleteId, setDeleteId] = React.useState(0);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [totalValue, setTotalValue] = React.useState(0);
 
   React.useEffect(() => {
     socket.on("connect", () => {
       console.log("Connected...");
     });
 
-    function receiveProducts(prods) {
+    function receiveItens(prods) {
       setItens([...prods]);
       setFilteredItens([...prods]);
     }
 
     socket.on("refreshItensList", (prods) => {
-      receiveProducts(prods);
+      receiveItens(prods);
     });
   }, [socket]);
 
@@ -41,6 +42,14 @@ function ShoppingCart() {
     const filter = itens.filter((product) => product.productId !== deleteId);
     setFilteredItens(filter);
   }
+
+  React.useEffect(() => {
+    let total = 0;
+    itens.forEach((item) => {
+      total = total + item.product.productPrice;
+    });
+    setTotalValue(total);
+  }, [itens]);
 
   function onSearch(value) {
     setSearch(value);
@@ -88,24 +97,43 @@ function ShoppingCart() {
             </div>
           ))}
       </div>
-      <div className="confirmation-card">
-        <div className="cardfinal">
-          <div className="card-body">
-            <h5 className="card-title">Valor total do pedido:</h5>
-            <div className="card-buttons">
-              <Button type="primary" onClick={showModal} className="btn-buy">
-                Finalizar Pedido
-              </Button>
-              <Modal
-                title="ALERTA"
-                visible={isModalOpen}
-                onOk={handleOk}
-                onCancel={handleCancel}
-              >
-                <p>Deseja finalizar sua compra?</p>
-              </Modal>
+      <div className="confirmation-card-container">
+        <div className="confirmation-card">
+          <p className="card-title">
+            Valor total do pedido:{" "}
+            <span style={{ color: "black", paddingLeft: 5 }}>
+              R${totalValue}
+            </span>
+          </p>
+          <button type="primary" onClick={showModal} className="btn-buy">
+            Finalizar Pedido
+          </button>
+          <Modal
+            title={null}
+            open={isModalOpen}
+            footer={null}
+            className="shoppincart-modal"
+            onOk={handleOk}
+            onCancel={handleCancel}
+            bodyStyle={{
+              width: "100%",
+              borderRadius: 35,
+              textAlign: "center",
+              padding: 0,
+            }}
+          >
+            <p className="modal-text">
+              Tem certeza que deseja finalizar o pedido?
+            </p>
+            <p style={{ color: "#61a6ab", padding: 10 }}>
+              Valor total:{" "}
+              <span style={{ color: "black" }}>R${totalValue}</span>
+            </p>
+            <div className="buttons-box">
+              <button onClick={handleCancel}>Cancelar</button>
+              <button onOk={handleOk}>Finalizar</button>
             </div>
-          </div>
+          </Modal>
         </div>
       </div>
     </div>
