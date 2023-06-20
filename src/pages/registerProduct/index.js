@@ -30,6 +30,14 @@ const RegisterProduct = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    showModal();
+  };
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
     const product = {
       productCode: codigo,
       productName: nome,
@@ -41,13 +49,6 @@ const RegisterProduct = () => {
     setCodigo(uuid().split("-")[0]);
     setNome("");
     setPreco("");
-  };
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
     setIsModalOpen(false);
   };
 
@@ -106,11 +107,11 @@ const RegisterProduct = () => {
               }}
             >
               <p className="modal-text">
-                Tem certeza que deseja remover esse item do carrinho?
+                Tem certeza que deseja cadastar esse produto?
               </p>
               <div className="buttons-box">
                 <button onClick={handleCancel}>Cancelar</button>
-                <button onOk={handleOk}>Remover</button>
+                <button onClick={handleOk}>Cadastar</button>
               </div>
             </Modal>
           </div>

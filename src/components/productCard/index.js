@@ -41,6 +41,7 @@ const ProductCard = ({ product, setDeleteId }) => {
       productId: product.productId,
       itemQuantity: quantity,
       clientId: 1,
+      product: product,
     };
 
     socket.emit("createItem", item);

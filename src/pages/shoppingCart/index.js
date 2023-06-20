@@ -1,4 +1,5 @@
 import { Modal } from "antd";
+import axios from "axios";
 import React from "react";
 import { io } from "socket.io-client";
 import ItemCard from "../../components/itemCard";
@@ -20,6 +21,7 @@ function ShoppingCart() {
     });
 
     function receiveItens(prods) {
+      console.log(prods);
       setItens([...prods]);
       setFilteredItens([...prods]);
     }
@@ -39,7 +41,7 @@ function ShoppingCart() {
 
   async function deleteProduct() {
     socket.emit("deleteItem", deleteId);
-    const filter = itens.filter((product) => product.productId !== deleteId);
+    const filter = itens.filter((product) => product?.productId !== deleteId);
     setFilteredItens(filter);
   }
 
@@ -56,7 +58,7 @@ function ShoppingCart() {
     if (search !== "") {
       const filter = itens.filter(
         (item) =>
-          item.product.productName
+          item?.product?.productName
             .toLowerCase()
             .includes(value.toLowerCase()) || item.itemCode.includes(value)
       );
@@ -71,6 +73,18 @@ function ShoppingCart() {
   };
 
   const handleOk = () => {
+    axios
+      .get(`http://localhost:3333/orders/find-open-order/${1}`)
+      .then((orders) => {
+        axios
+          .patch(
+            `http://localhost:3333/orders/finish-order/${orders.data[0].orderId}`
+          )
+          .then(() => {
+            socket.emit("listItens");
+          });
+      });
+
     setIsModalOpen(false);
   };
 
@@ -113,7 +127,6 @@ function ShoppingCart() {
             open={isModalOpen}
             footer={null}
             className="shoppincart-modal"
-            onOk={handleOk}
             onCancel={handleCancel}
             bodyStyle={{
               width: "100%",
@@ -131,7 +144,7 @@ function ShoppingCart() {
             </p>
             <div className="buttons-box">
               <button onClick={handleCancel}>Cancelar</button>
-              <button onOk={handleOk}>Finalizar</button>
+              <button onClick={handleOk}>Finalizar</button>
             </div>
           </Modal>
         </div>
