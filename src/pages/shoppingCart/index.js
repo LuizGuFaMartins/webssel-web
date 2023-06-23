@@ -1,77 +1,156 @@
+import { Modal } from "antd";
+import axios from "axios";
 import React from "react";
+import { io } from "socket.io-client";
+import ItemCard from "../../components/itemCard";
 import "./styles.css";
 
-  function ShoppingCart() {
-    const [codigoItem, setCodigoItem] = React.useState('');
-    const [produto, setProduto] = React.useState('');
-    const [preco, setPreco] = React.useState('');
-    const [quantidade, setQuantidade] = React.useState('');
-    const [valorTotal, setValorTotal] = React.useState('');
-  
-    const handleCodigoItemChange = (event) => {
-      setCodigoItem(event.target.value);
-    };
-  
-    const handleProdutoChange = (event) => {
-      setProduto(event.target.value);
-    };
-  
-    const handlePrecoChange = (event) => {
-      setPreco(event.target.value);
-    };
-  
-    const handleQuantidadeChange = (event) => {
-      setQuantidade(event.target.value);
-    };
-  
-    const handleValorTotalChange = (event) => {
-      setValorTotal(event.target.value);
-    };
-  
-      return (
-      <div className="container">
-          <div className="search-bar">
-            <input type="text" placeholder="Buscar por nome do produto..."/>
-          </div>
-        <div className="boxcard">    
-            <div className="card">
-              <div className="card-body">
-                <div className="form-groupcod">
-               <label>Código do Item:</label>
-                <span>ola</span>
-                </div>
-                <div className="form-group">
-                  <label>Produto:</label>
-                </div>
-                <div>
-                  <span>ola pessoas</span>
-                </div>
-                <div className="form-group">
-                  <label>Preço:</label>
-                </div>
-                <div>
-                  <span>ola pessoas</span>
-                </div>
-                <div className="form-group">
-                  <label>Quantidade:</label>
-                </div>
-                <div>
-                  <span>ola pessoas</span>
-                </div>
-                <div className="form-group">
-                  <label>Valor total do item:</label>
-                </div>
-                <div>
-                  <span>ola pessoas</span>
-                </div>
-                <div className="remove-button">
-                  <button>Remover do carrinho</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+function ShoppingCart() {
+  const socket = React.useMemo(() => io("http://localhost:3333"), []);
+
+  const [itens, setItens] = React.useState([]);
+  const [filteredItens, setFilteredItens] = React.useState([]);
+  const [search, setSearch] = React.useState("");
+  const [deleteId, setDeleteId] = React.useState(0);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [totalValue, setTotalValue] = React.useState(0);
+
+  React.useEffect(() => {
+    socket.on("connect", () => {
+      console.log("Connected...");
+    });
+
+    function receiveItens(prods) {
+      console.log(prods);
+      setItens([...prods]);
+      setFilteredItens([...prods]);
+    }
+
+    socket.on("refreshItensList", (prods) => {
+      receiveItens(prods);
+    });
+  }, [socket]);
+
+  React.useEffect(() => {
+    if (deleteId !== 0) {
+      deleteProduct();
+    } else {
+      setDeleteId(0);
+    }
+  }, [deleteId]);
+
+  async function deleteProduct() {
+    socket.emit("deleteItem", deleteId);
+    const filter = itens.filter((product) => product?.productId !== deleteId);
+    setFilteredItens(filter);
+  }
+
+  React.useEffect(() => {
+    let total = 0;
+    itens.forEach((item) => {
+      total = total + item.product.productPrice;
+    });
+    setTotalValue(total);
+  }, [itens]);
+
+  function onSearch(value) {
+    setSearch(value);
+    if (search !== "") {
+      const filter = itens.filter(
+        (item) =>
+          item?.product?.productName
+            .toLowerCase()
+            .includes(value.toLowerCase()) || item.itemCode.includes(value)
       );
+      setFilteredItens(filter);
+    } else {
+      setFilteredItens(itens);
+    }
+  }
+
+  const showModal = () => {
+    setIsModalOpen(true);
   };
-  
-  export default ShoppingCart;
+
+  const handleOk = () => {
+    axios
+      .get(`http://localhost:3333/orders/find-open-order/${1}`)
+      .then((orders) => {
+        axios
+          .patch(
+            `http://localhost:3333/orders/finish-order/${orders.data[0].orderId}`
+          )
+          .then(() => {
+            socket.emit("listItens");
+          });
+      });
+
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <div className="container">
+      <div className="search-bar">
+        <input
+          value={search}
+          onChange={({ target }) => onSearch(target.value)}
+          type="text"
+          placeholder="Buscar por nome do produto ou código do item..."
+        />
+        <div className="glass"></div>
+      </div>
+      <div className="boxcard">
+        {filteredItens.length > 0 &&
+          filteredItens.map((item) => (
+            <div key={item.itemCode} className="card">
+              <ItemCard item={item} setDeleteId={setDeleteId} />
+            </div>
+          ))}
+      </div>
+      <div className="confirmation-card-container">
+        <div className="confirmation-card">
+          <p className="card-title">
+            Valor total do pedido:{" "}
+            <span style={{ color: "black", paddingLeft: 5 }}>
+              R${totalValue}
+            </span>
+          </p>
+          <button type="primary" onClick={showModal} className="btn-buy">
+            Finalizar Pedido
+          </button>
+          <Modal
+            title={null}
+            open={isModalOpen}
+            footer={null}
+            className="shoppincart-modal"
+            onCancel={handleCancel}
+            bodyStyle={{
+              width: "100%",
+              borderRadius: 35,
+              textAlign: "center",
+              padding: 0,
+            }}
+          >
+            <p className="modal-text">
+              Tem certeza que deseja finalizar o pedido?
+            </p>
+            <p style={{ color: "#61a6ab", padding: 10 }}>
+              Valor total:{" "}
+              <span style={{ color: "black" }}>R${totalValue}</span>
+            </p>
+            <div className="buttons-box">
+              <button onClick={handleCancel}>Cancelar</button>
+              <button onClick={handleOk}>Finalizar</button>
+            </div>
+          </Modal>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default ShoppingCart;

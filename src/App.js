@@ -5,21 +5,23 @@ import {
   ShopOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { Button, Layout, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content, Header } from "antd/es/layout/layout";
 import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import logoIcon from "./assets/images/logo-icon.png";
 import logo from "./assets/svg/logo.svg";
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [collapsed, setCollapsed] = React.useState(false);
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+
+  React.useEffect(() => {
+    navigate("/produtos");
+  }, []);
 
   return (
     <Layout className="layout-container">
@@ -76,6 +78,8 @@ function App() {
           style={{
             padding: 0,
             background: "#ACCEC0",
+            display: "flex",
+            alignContent: "center",
           }}
         >
           <Button
@@ -86,17 +90,29 @@ function App() {
               fontSize: "16px",
               width: 64,
               height: 64,
+              color: "white",
             }}
           />
+          <div className="header-label">
+            <h2>
+              {location.pathname.includes("/produtos")
+                ? "Produtos"
+                : location.pathname.includes("/cadastro")
+                ? "Cadastro"
+                : location.pathname.includes("/carrinho")
+                ? "Carrinho"
+                : ""}
+            </h2>
+          </div>
         </Header>
         <Content
           style={{
             maxHeight: "100%",
-            margin: "24px 16px",
-            padding: 24,
+            padding: "2.5rem",
             minHeight: 280,
             background: "white",
             overflow: "auto",
+            position: "relative",
           }}
         >
           <Outlet />
