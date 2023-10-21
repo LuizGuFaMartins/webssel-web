@@ -20,8 +20,12 @@ function App() {
   const [collapsed, setCollapsed] = React.useState(false);
 
   React.useEffect(() => {
-    navigate("/produtos");
+    navigate("/login");
   }, []);
+
+  // React.useEffect(() => {
+  //   navigate("/produtos");
+  // }, []);
 
   return (
     <Layout className="layout-container">
@@ -55,17 +59,23 @@ function App() {
             {
               key: "1",
               icon: <ShopOutlined />,
+              label: "Login",
+              onClick: () => navigate("/login"),
+            },
+            {
+              key: "2",
+              icon: <ShopOutlined />,
               label: "Produtos",
               onClick: () => navigate("/produtos"),
             },
             {
-              key: "2",
+              key: "3",
               icon: <PlusCircleOutlined />,
               label: "Cadastrar",
               onClick: () => navigate("/cadastro"),
             },
             {
-              key: "3",
+              key: "4",
               icon: <ShoppingCartOutlined />,
               label: "Carrinho",
               onClick: () => navigate("/carrinho"),
@@ -95,7 +105,10 @@ function App() {
           />
           <div className="header-label">
             <h2>
-              {location.pathname.includes("/produtos")
+              {
+                location.pathname.includes("/login")
+                ? "Login"
+                : location.pathname.includes("/produtos")
                 ? "Produtos"
                 : location.pathname.includes("/cadastro")
                 ? "Cadastro"
