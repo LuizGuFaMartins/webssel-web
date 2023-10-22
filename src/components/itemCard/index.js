@@ -3,17 +3,16 @@ import React from "react";
 import "./styles.css";
 
 const ItemCard = ({ item, setDeleteId }) => {
+  
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-  function onDelete() {
-    setDeleteId(item.itemId);
-  }
   const showModal = () => {
     setIsModalOpen(true);
   };
 
   const handleOk = () => {
-    setIsModalOpen(item.itemId);
+    setDeleteId(item.itemId);
+    setIsModalOpen(false);
   };
 
   const handleCancel = () => {
@@ -48,7 +47,7 @@ const ItemCard = ({ item, setDeleteId }) => {
         </button>
         <Modal
           title={null}
-          open={isModalOpen}
+          visible={isModalOpen}
           footer={null}
           className="shoppincart-modal-remove-item"
           onOk={handleOk}
@@ -65,7 +64,7 @@ const ItemCard = ({ item, setDeleteId }) => {
           </p>
           <div className="buttons-box">
             <button onClick={handleCancel}>Cancelar</button>
-            <button onOk={handleOk}>Remover</button>
+            <button onClick={handleOk}>Remover</button>
           </div>
         </Modal>
       </div>

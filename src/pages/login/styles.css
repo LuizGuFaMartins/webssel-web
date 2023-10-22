@@ -1,63 +1,57 @@
-.product-container {
+.login-container {
+  background: #61A6AB;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.login-form {
+  background: white;
+  width: 320px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
-  max-width: 1100px;
-  height: fit-content;
-  margin: 0 auto;
-  padding-bottom: 3rem;
+  justify-content: center;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.search-bar {
-  width: 100%;
-  height: 50px;
+
+.login-form h2 {
+  color: #000000; /* Cor do texto */
   margin-bottom: 20px;
-  position: relative;
 }
 
-.search-bar input[type="text"] {
-  width: 100%;
-  height: 100%;
+.login-form input {
+  padding: 10px;
+  margin: 10px 0;
+  width: 50%;
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+
+
+.login-form button {
+  margin-top: 20px;
   padding: 10px 20px;
-  padding-right: 55px;
-  border: 2px solid #61a6ab;
-  border-radius: 10px;
-  font-size: 16px;
-  background-color: #f7f7f7;
-}
-
-.glass {
-  width: 30px;
-  height: 30px;
-  background-image: url("../../assets/svg/lupa.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-}
-
-.search-bar input[type="text"]:focus {
-  outline: none;
-}
-
-.product-boxcard {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-wrap: wrap;
-  align-content: center;
-  gap: 2.4rem;
-  padding: 1rem 0;
-}
-
-.product-card {
-  border: 3px solid #61a6ab;
-  border-radius: 35px;
-  padding: 1rem 1.5rem;
-  width: 31%;
-  max-width: 500px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  min-width: 250px;
+  background-color: #a3c1c4;
+  color: rgb(0, 0, 0); /* Altere a cor do texto para a cor desejada, por exemplo, "white" para branco */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
