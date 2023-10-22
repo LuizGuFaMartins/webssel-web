@@ -23,10 +23,6 @@ function App() {
     navigate("/login");
   }, []);
 
-  // React.useEffect(() => {
-  //   navigate("/produtos");
-  // }, []);
-
   return (
     <Layout className="layout-container">
       <Sider

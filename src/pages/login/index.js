@@ -4,32 +4,31 @@ import { io } from "socket.io-client";
 import "./styles.css";
 
 const Login = () => {
-
   const socket = React.useMemo(() => io("http://localhost:3333"), []);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:3333/login', {
-        method: 'POST',
+      const response = await fetch("http://localhost:3333/auth/login", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
         const { token } = await response.json();
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token.access_token);
         navigate("/produtos");
       } else {
-        console.error('Credenciais inválidas');
+        console.error("Credenciais inválidas");
       }
     } catch (error) {
-      console.error('Erro ao fazer login:', error);
+      console.error("Erro ao fazer login:", error);
     }
   };
 
