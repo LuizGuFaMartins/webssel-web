@@ -27,15 +27,11 @@ function App() {
     navigate("/login");
   };
 
-  React.useEffect(() => {
-    navigate("/login");
-  }, []);
-
   return (
     <div className="layout-container">
-      {location.pathname === "/login" ? (
-        <Login />
-      ) : (
+     {location.pathname === "/" || location.pathname === "/login" ? (
+  <Login />
+) : (
         <Layout className="layout-container">
           <Sider
             trigger={null}
