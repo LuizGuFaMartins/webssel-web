@@ -26,6 +26,8 @@ const Login = () => {
       if (response.ok) {
         const { token } = await response.json();
         localStorage.setItem("token", token.access_token);
+        const tokenTimestamp = new Date().getTime();
+        localStorage.setItem("tokenTimestamp", tokenTimestamp);
         navigate("/produtos");
       } else {
         setErrorModalVisible(true);
