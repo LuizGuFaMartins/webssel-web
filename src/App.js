@@ -15,6 +15,7 @@ import "./App.css";
 import logoIcon from "./assets/images/logo-icon.png";
 import logo from "./assets/svg/logo.svg";
 import Login from "./pages/login/index";
+import RegisterClient from "./pages/createUser";
 
 
 function App() {
@@ -31,7 +32,9 @@ function App() {
     <div className="layout-container">
      {location.pathname === "/" || location.pathname === "/login" ? (
   <Login />
-) : (
+) : location.pathname === "/cadastroCliente" ? (
+  <RegisterClient />
+) : ( 
         <Layout className="layout-container">
           <Sider
             trigger={null}

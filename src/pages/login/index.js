@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { io } from "socket.io-client";
 import { Modal } from "antd";
 import "./styles.css";
 import logoIcon from "../../assets/images/logo-icon.png";
 
 const Login = () => {
-  const socket = React.useMemo(() => io("http://localhost:3333"), []);
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [clientEmail, setClientEmail] = useState("");
+  const [clientPassword, setClientPassword] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
+
+  const handleNavigateToCadastro = () => {
+    navigate("/cadastroCliente");
+  };
 
   const handleLogin = async () => {
     try {
@@ -20,7 +22,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ clientEmail, clientPassword }),
       });
 
       if (response.ok) {
@@ -50,17 +52,20 @@ const Login = () => {
         <h2>Login</h2>
         <input
           type="text"
-          placeholder="Usuário"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Email"
+          value={clientEmail}
+          onChange={(e) => setClientEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={clientPassword}
+          onChange={(e) => setClientPassword(e.target.value)}
         />
         <button onClick={handleLogin}>Entrar</button>
+        <p>
+          Não tem uma conta? <span className="span" onClick={handleNavigateToCadastro}>Cadastrar</span>
+        </p>
       </div>
 
       <Modal

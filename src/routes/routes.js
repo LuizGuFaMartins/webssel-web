@@ -5,6 +5,7 @@ import App from "../App";
 import Login from "../pages/login";
 import Product from "../pages/products";
 import RegisterProduct from "../pages/registerProduct";
+import RegisterClient from "../pages/createUser";
 import ShoppingCart from "../pages/shoppingCart";
 import Auth from "./ProtectedRoutes"
 
@@ -14,6 +15,7 @@ const Routes = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/login", element: <Login /> },
+      { path: "/cadastroCliente", element: <RegisterClient /> },
       { path: "/produtos", element: <Auth><Product /></Auth> },
       { path: "/cadastro", element: <Auth><RegisterProduct /></Auth> },
       { path: "/carrinho", element: <Auth><ShoppingCart /></Auth> },
