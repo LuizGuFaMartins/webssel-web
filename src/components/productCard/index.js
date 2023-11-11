@@ -59,12 +59,12 @@ const ProductCard = ({ product, setDeleteId }) => {
         <span>{product.productCode}</span>
       </div>
       <div className="form-group">
-        <label>Produto:</label>
-        <span>{product.productName}</span>
+        <label>Produto: <span className="span-label">{product.productName}</span></label>
+        
       </div>
       <div className="form-group">
-        <label>Preço:</label>
-        <span>R${product.productPrice}</span>
+        <label>Preço: <span className="span-label">R${product.productPrice}</span></label>
+        
       </div>
       <div className="buttons-box">
         <button type="primary" onClick={showModal} className="btn-buy">

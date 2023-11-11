@@ -30,6 +30,7 @@ const Login = () => {
         localStorage.setItem("token", token.access_token);
         const tokenTimestamp = new Date().getTime();
         localStorage.setItem("tokenTimestamp", tokenTimestamp);
+        localStorage.setItem("clientId", token.clientId);
         navigate("/produtos");
       } else {
         setErrorModalVisible(true);

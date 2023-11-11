@@ -8,6 +8,7 @@ import RegisterProduct from "../pages/registerProduct";
 import RegisterClient from "../pages/createUser";
 import ShoppingCart from "../pages/shoppingCart";
 import Auth from "./ProtectedRoutes"
+import Payments from "../pages/payment";
 
 const Routes = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const Routes = createBrowserRouter([
       { path: "/produtos", element: <Auth><Product /></Auth> },
       { path: "/cadastro", element: <Auth><RegisterProduct /></Auth> },
       { path: "/carrinho", element: <Auth><ShoppingCart /></Auth> },
+      { path: "/pagamentos", element: <Auth><Payments /></Auth> },
     ],
   },
 ]);

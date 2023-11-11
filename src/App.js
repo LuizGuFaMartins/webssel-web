@@ -5,6 +5,7 @@ import {
   ShopOutlined,
   ShoppingCartOutlined,
   LogoutOutlined,
+  CreditCardOutlined,
 } from "@ant-design/icons";
 import { Button, Layout, Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
@@ -83,6 +84,12 @@ function App() {
                 },
                 {
                   key: "4",
+                  icon: <CreditCardOutlined />,
+                  label: "Pagamentos",
+                  onClick: () => navigate("/pagamentos"),
+                },
+                {
+                  key: "5",
                   icon: 
                   <LogoutOutlined style={{ color: "red"}} />, 
                   label: <span style={{color: "red"}}>Sair</span>,
@@ -120,7 +127,9 @@ function App() {
                         ? "Cadastro"
                         : location.pathname.includes("/carrinho")
                           ? "Carrinho"
-                          : ""
+                          : location.pathname.includes("/pagamentos") 
+                            ? "Pagamentos"
+                            :""
                   }
                 </h2>
                 </div>

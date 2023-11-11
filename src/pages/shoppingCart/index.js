@@ -74,14 +74,14 @@ function ShoppingCart() {
 
   const handleOk = () => {
     axios
-      .get(`http://localhost:3333/orders/find-open-order/${1}`)
+      .get(`http://localhost:3333/orders/find-open-order/${localStorage.getItem("clientId")}`)
       .then((orders) => {
         axios
           .patch(
             `http://localhost:3333/orders/finish-order/${orders.data[0].orderId}`
           )
           .then(() => {
-            socket.emit("listItens");
+              socket.emit("listItens");
           });
       });
 

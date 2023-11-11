@@ -10,12 +10,13 @@ const Auth = ({ children }) => {
         const checkTokenExpiration = () => {
      
             const now = new Date().getTime();
-            // const tokenExpirationTime = 10 * 60 * 1000; 
-            const tokenExpirationTime = 10 * 1000; 
+            const tokenExpirationTime = 10 * 60 * 1000; 
+            // const tokenExpirationTime = 10 * 1000; 
 
             if (now - parseInt(tokenTimestamp, 10) >= tokenExpirationTime) {
                 localStorage.removeItem("token");
                 localStorage.removeItem("tokenTimestamp");
+                localStorage.removeItem("clientId");
                 setShouldRedirect(true);
             }
         };
