@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./styles.css";
 import { Modal } from "antd";
-import logoIcon from "../../assets/images/logo-icon.png";
 
-const RegisterClient = () => {
+const RegisterClient = ({onCancel}) => {
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPassword, setClientPassword] = useState("");
@@ -13,7 +11,6 @@ const RegisterClient = () => {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
 
-  const navigate = useNavigate();
 
   const handleClientNameChange = (event) => {
     setClientName(event.target.value);
@@ -32,7 +29,7 @@ const RegisterClient = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/login");
+    onCancel();
   };
 
   const handleCloseErrorModal = () => {
@@ -112,8 +109,8 @@ const RegisterClient = () => {
           <p style={{ color: "red" }}>As senhas não coincidem.</p>
         )}
         <div className="btn-div">
-          <button onClick={handleGoBack}>Voltar</button>
-          <button onClick={handleOk}>Cadastrar</button>
+          <button className="btn" onClick={handleGoBack}>Voltar</button>
+          <button className="btn" onClick={handleOk}>Cadastrar</button>
         </div>
         <Modal
           title="Campos vazios"
@@ -128,9 +125,6 @@ const RegisterClient = () => {
             <button onClick={handleCloseErrorModal}>OK</button>
           </div>
         </Modal>
-      </div>
-      <div className="logo">
-        <img src={logoIcon} alt="logo" />
       </div>
     </div>
   );

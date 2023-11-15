@@ -16,8 +16,6 @@ import "./App.css";
 import logoIcon from "./assets/images/logo-icon.png";
 import logo from "./assets/svg/logo.svg";
 import Login from "./pages/login/index";
-import RegisterClient from "./pages/createUser";
-
 
 function App() {
   const navigate = useNavigate();
@@ -33,8 +31,6 @@ function App() {
     <div className="layout-container">
      {location.pathname === "/" || location.pathname === "/login" ? (
   <Login />
-) : location.pathname === "/cadastroCliente" ? (
-  <RegisterClient />
 ) : ( 
         <Layout className="layout-container">
           <Sider
@@ -42,7 +38,7 @@ function App() {
             collapsible
             collapsed={collapsed}
             style={{
-              background: "#61A6AB",
+              background: "#322d49",
             }}
           >
             <div className="demo-logo-vertical">
@@ -58,7 +54,7 @@ function App() {
             </div>
             <Menu
               style={{
-                background: "#61A6AB",
+                background: "#322d49",
                 color: "#FFFFFF",
               }}
               mode="inline"
@@ -102,7 +98,7 @@ function App() {
             <Header
               style={{
                 padding: 0,
-                background: "#ACCEC0",
+                background: "#a3a6c4",
                 display: "flex",
                 alignContent: "center",
               }}

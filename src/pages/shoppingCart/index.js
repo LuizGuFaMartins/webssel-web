@@ -138,7 +138,7 @@ function ShoppingCart() {
             <p className="modal-text">
               Tem certeza que deseja finalizar o pedido?
             </p>
-            <p style={{ color: "#61a6ab", padding: 10 }}>
+            <p style={{ color: "#322d49", padding: 10 }}>
               Valor total:{" "}
               <span style={{ color: "black" }}>R${totalValue}</span>
             </p>

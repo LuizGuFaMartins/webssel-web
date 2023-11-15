@@ -26,7 +26,7 @@
 }
 
 .product-card .buttons-box button:nth-of-type(2) {
-  background-color: #d3cb09;
+  background-color: #69b655;
 }
 
 .card-body .buttons-box button:nth-of-type(1):hover {
@@ -52,7 +52,7 @@
 }
 
 .product-card .form-group label {
-  color: #61a6ab;
+  color: #322d49;
   font-weight: bold;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .product-modal {
-  border: 3px solid #61a6ab;
+  border: 3px solid #322d49;
   border-radius: 20px;
   padding: 0;
   height: fit-content;
@@ -127,7 +127,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  color: #61a6ab;
+  color: #322d49;
   margin-bottom: 30px;
 }
 
@@ -140,7 +140,7 @@
   width: 50px;
   height: 30px;
   padding: 10px 20px;
-  border: 2px solid #61a6ab;
+  border: 2px solid #322d49;
   border-radius: 10px;
   font-size: 16px;
   background-color: #f7f7f7;
