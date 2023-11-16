@@ -140,7 +140,7 @@ const ProductCard = ({ product, setDeleteId }) => {
           <div style={{ marginTop: 20 }} className="buttons-box">
             <button onClick={handleCancelBuy}>Cancelar</button>
             <button
-              style={{ backgroundColor: "#D3CB09" }}
+              style={{ backgroundColor: "#69b655" }}
               onClick={handleOkBuy}
             >
               Adicionar ao carrinho

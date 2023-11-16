@@ -114,7 +114,7 @@ const RegisterClient = ({onCancel}) => {
         </div>
         <Modal
           title="Campos vazios"
-          visible={errorModalVisible}
+          open={errorModalVisible}
           onOk={handleCloseErrorModal}
           onCancel={handleCloseErrorModal}
           centered

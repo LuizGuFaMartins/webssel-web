@@ -100,7 +100,7 @@
   }
 }
 
-.ant-modal .ant-modal-content {
+.modal-cad .ant-modal-content {
   margin-left: 17%;
   position: relative;
   background-color: #ffffff;
@@ -117,4 +117,23 @@
   }
 }
 
- 
+/* .ant-modal .ant-modal-close {
+  position: absolute;
+  top: 17px;
+  inset-inline-end: 17px;
+  z-index: 1010;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  background: transparent;
+  border-radius: 4px;
+  width: 22px;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+  transition: color 0.2s,background-color 0.2s;
+} */
+
+

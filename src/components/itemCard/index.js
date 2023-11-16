@@ -47,7 +47,7 @@ const ItemCard = ({ item, setDeleteId }) => {
         </button>
         <Modal
           title={null}
-          visible={isModalOpen}
+          open={isModalOpen}
           footer={null}
           className="shoppincart-modal-remove-item"
           onOk={handleOk}

@@ -105,6 +105,7 @@ const Login = () => {
             </Modal>
 
             <Modal
+            className="modal-cad"
               open={registerModalVisible}
               onOk={handleCloseRegisterModal}
               onCancel={handleCloseRegisterModal}
