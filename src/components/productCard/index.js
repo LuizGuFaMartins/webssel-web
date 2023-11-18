@@ -59,12 +59,12 @@ const ProductCard = ({ product, setDeleteId }) => {
         <span>{product.productCode}</span>
       </div>
       <div className="form-group">
-        <label>Produto:</label>
-        <span>{product.productName}</span>
+        <label>Produto: <span className="span-label">{product.productName}</span></label>
+        
       </div>
       <div className="form-group">
-        <label>Preço:</label>
-        <span>R${product.productPrice}</span>
+        <label>Preço: <span className="span-label">R${product.productPrice}</span></label>
+        
       </div>
       <div className="buttons-box">
         <button type="primary" onClick={showModal} className="btn-buy">
@@ -140,7 +140,7 @@ const ProductCard = ({ product, setDeleteId }) => {
           <div style={{ marginTop: 20 }} className="buttons-box">
             <button onClick={handleCancelBuy}>Cancelar</button>
             <button
-              style={{ backgroundColor: "#D3CB09" }}
+              style={{ backgroundColor: "#69b655" }}
               onClick={handleOkBuy}
             >
               Adicionar ao carrinho

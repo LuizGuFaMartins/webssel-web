@@ -74,14 +74,14 @@ function ShoppingCart() {
 
   const handleOk = () => {
     axios
-      .get(`http://localhost:3333/orders/find-open-order/${1}`)
+      .get(`http://localhost:3333/orders/find-open-order/${localStorage.getItem("clientId")}`)
       .then((orders) => {
         axios
           .patch(
             `http://localhost:3333/orders/finish-order/${orders.data[0].orderId}`
           )
           .then(() => {
-            socket.emit("listItens");
+              socket.emit("listItens");
           });
       });
 
@@ -138,7 +138,7 @@ function ShoppingCart() {
             <p className="modal-text">
               Tem certeza que deseja finalizar o pedido?
             </p>
-            <p style={{ color: "#61a6ab", padding: 10 }}>
+            <p style={{ color: "#322d49", padding: 10 }}>
               Valor total:{" "}
               <span style={{ color: "black" }}>R${totalValue}</span>
             </p>
