@@ -1,33 +1,36 @@
-.product-card .card-body {
+.payment-card .card-body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.product-card .card-body .buttons-box {
+.payment-card .card-body .buttons-box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
-.product-card .card-body .buttons-box button {
+.payment-card .card-body .buttons-box button {
   color: white;
   padding: 8px 16px;
   border: none;
   cursor: pointer;
   margin-top: 2%;
+  margin-right: 5px;
+  margin-left: 5px;
   cursor: pointer;
   width: 46%;
-  min-width: 140px;
+  min-width: 120px;
 }
 
-.product-card .card-body .buttons-box button:nth-of-type(1) {
+.payment-card .card-body .buttons-box button:nth-of-type(1) {
   background-color: #e64141;
 }
 
-.product-card .buttons-box button:nth-of-type(2) {
+.payment-card .buttons-box button:nth-of-type(2) {
   background-color: #69b655;
 }
 
@@ -46,19 +49,19 @@
   padding: 2%;
 }
 
-.product-card .form-group {
+.payment-card .form-group {
   margin-bottom: 2%;
   display: flex;
   flex-direction: column;
   margin: 5px 0;
 }
 
-.product-card .form-group label {
+.payment-card .form-group label {
   color: #322d49;
   font-weight: bold;
 }
 
-.product-card .form-group:nth-of-type(1) {
+.payment-card .form-group:nth-of-type(1) {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -67,25 +70,25 @@
   margin: 5px 0;
 }
 
-.product-card .form-group:nth-of-type(1) span {
+.payment-card .form-group:nth-of-type(1) span {
   margin-left: 5px;
 }
 
-.product-modal {
+.payment-modal {
   border: 3px solid #322d49;
   border-radius: 20px;
   padding: 0;
   height: fit-content;
 }
 
-.product-modal .modal-text {
+.payment-modal .modal-text {
   font-size: 18px;
   padding: 20px 0;
   width: 80%;
   margin: 0 auto;
 }
 
-.product-modal .modal-warning {
+.payment-modal .modal-warning {
   font-size: 18px;
   padding: 20px 0;
   width: 70%;
@@ -94,7 +97,7 @@
   margin-bottom: 20px;
 }
 
-.product-modal button {
+.payment-modal button {
   color: white;
   padding: 8px 16px;
   border: none;
@@ -106,23 +109,23 @@
   margin: 0 5px;
 }
 
-.product-modal .buttons-box button:nth-of-type(1) {
+.payment-modal .buttons-box button:nth-of-type(1) {
   background-color: #e64141;
 }
 
-.product-modal .buttons-box button:nth-of-type(2) {
+.payment-modal .buttons-box button:nth-of-type(2) {
   background-color: #69b655;
 }
 
-.product-modal .buttons-box button:nth-of-type(1):hover {
+.payment-modal .buttons-box button:nth-of-type(1):hover {
   background-color: darkred;
 }
 
-.product-modal .buttons-box button:nth-of-type(2):hover {
+.payment-modal .buttons-box button:nth-of-type(2):hover {
   background-color: #3b6835;
 }
 
-.product-modal .product-input-group {
+.payment-modal .payment-input-group {
   width: 200px !important;
   margin: 0 auto;
   display: flex;
@@ -133,12 +136,12 @@
   margin-bottom: 30px;
 }
 
-.product-modal .product-input-group img {
+.payment-modal .payment-input-group img {
   margin: 0 5px;
   cursor: pointer;
 }
 
-.product-modal input[type="number"] {
+.payment-modal input[type="number"] {
   width: 50px;
   height: 30px;
   padding: 10px 20px;
@@ -149,7 +152,7 @@
   color: #a4a4a4;
 }
 
-.product-modal input[type="number"]:focus {
+.payment-modal input[type="number"]:focus {
   outline: none;
 }
 
@@ -159,5 +162,5 @@
 }
 
 .btn-buy{
-  margin-left: 70px;
+  /* margin-left: 70px; */
 }

@@ -1,12 +1,13 @@
 import { Modal } from "antd";
 import axios from "axios";
 import React from "react";
+import env from "react-dotenv";
 import { io } from "socket.io-client";
 import ItemCard from "../../components/itemCard";
 import "./styles.css";
 
 function ShoppingCart() {
-  const socket = React.useMemo(() => io("http://localhost:3333"), []);
+  const socket = React.useMemo(() => io(`${env.BASE_URL}`), []);
 
   const [itens, setItens] = React.useState([]);
   const [filteredItens, setFilteredItens] = React.useState([]);
@@ -16,19 +17,23 @@ function ShoppingCart() {
   const [totalValue, setTotalValue] = React.useState(0);
 
   React.useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Connected...");
-    });
-
     function receiveItens(prods) {
-      console.log(prods);
       setItens([...prods]);
       setFilteredItens([...prods]);
     }
 
+    socket.emit("listItens", { clientId: localStorage.getItem("clientId") });
     socket.on("refreshItensList", (prods) => {
       receiveItens(prods);
     });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket]);
+
+  React.useEffect(() => {
+    socket.connect();
   }, [socket]);
 
   React.useEffect(() => {
@@ -40,7 +45,10 @@ function ShoppingCart() {
   }, [deleteId]);
 
   async function deleteProduct() {
-    socket.emit("deleteItem", deleteId);
+    socket.emit("deleteItem", {
+      productId: deleteId,
+      clientId: localStorage.getItem("clientId"),
+    });
     const filter = itens.filter((product) => product?.productId !== deleteId);
     setFilteredItens(filter);
   }
@@ -74,14 +82,20 @@ function ShoppingCart() {
 
   const handleOk = () => {
     axios
-      .get(`http://localhost:3333/orders/find-open-order/${localStorage.getItem("clientId")}`)
+      .get(
+        `${env.BASE_URL}/orders/find-open-order/${localStorage.getItem(
+          "clientId"
+        )}`
+      )
       .then((orders) => {
         axios
           .patch(
-            `http://localhost:3333/orders/finish-order/${orders.data[0].orderId}`
+            `${env.BASE_URL}/orders/finish-order/${orders.data[0].orderId}`
           )
           .then(() => {
-              socket.emit("listItens");
+            socket.emit("listItens", {
+              clientId: localStorage.getItem("clientId"),
+            });
           });
       });
 

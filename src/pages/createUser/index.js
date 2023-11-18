@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "./styles.css";
 import { Modal } from "antd";
+import axios from "axios";
+import React, { useState } from "react";
+import env from "react-dotenv";
+import "./styles.css";
 
-const RegisterClient = ({onCancel}) => {
+const RegisterClient = ({ onCancel }) => {
+  const baseUrl = env.BASE_URL;
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [clientPassword, setClientPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
-
 
   const handleClientNameChange = (event) => {
     setClientName(event.target.value);
@@ -50,7 +51,7 @@ const RegisterClient = ({onCancel}) => {
     setPasswordsMatch(true);
 
     axios
-      .post(`http://localhost:3333/clients/cadastro`, {
+      .post(`${baseUrl}/clients/cadastro`, {
         clientName: clientName,
         clientPassword: clientPassword,
         clientEmail: clientEmail,
@@ -70,7 +71,9 @@ const RegisterClient = ({onCancel}) => {
       <div className="login-form">
         <h2>Cadastro</h2>
         <div className="input-group">
-          <label htmlFor="clientName" className="label-fixed-width">Nome:</label>
+          <label htmlFor="clientName" className="label-fixed-width">
+            Nome:
+          </label>
           <input
             type="text"
             id="clientName"
@@ -79,7 +82,9 @@ const RegisterClient = ({onCancel}) => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="clientEmail" className="label-fixed-width">Email:</label>
+          <label htmlFor="clientEmail" className="label-fixed-width">
+            Email:
+          </label>
           <input
             type="text"
             id="clientEmail"
@@ -88,7 +93,9 @@ const RegisterClient = ({onCancel}) => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="clientPassword" className="label-fixed-width">Senha:</label>
+          <label htmlFor="clientPassword" className="label-fixed-width">
+            Senha:
+          </label>
           <input
             type="password"
             id="clientPassword"
@@ -97,7 +104,9 @@ const RegisterClient = ({onCancel}) => {
           />
         </div>
         <div className="input-group">
-          <label htmlFor="confirmPassword" className="label-fixed-width">Confirmar Senha:</label>
+          <label htmlFor="confirmPassword" className="label-fixed-width">
+            Confirmar Senha:
+          </label>
           <input
             type="password"
             id="confirmPassword"
@@ -109,8 +118,12 @@ const RegisterClient = ({onCancel}) => {
           <p style={{ color: "red" }}>As senhas não coincidem.</p>
         )}
         <div className="btn-div">
-          <button className="btn" onClick={handleGoBack}>Voltar</button>
-          <button className="btn" onClick={handleOk}>Cadastrar</button>
+          <button className="btn" onClick={handleGoBack}>
+            Voltar
+          </button>
+          <button className="btn" onClick={handleOk}>
+            Cadastrar
+          </button>
         </div>
         <Modal
           title="Campos vazios"
@@ -121,7 +134,10 @@ const RegisterClient = ({onCancel}) => {
           footer={null}
         >
           <p>Preencha todos os campos por favor.</p>
-          <div className="modal-buttons" style={{ display: "flex", justifyContent: "center" }}>
+          <div
+            className="modal-buttons"
+            style={{ display: "flex", justifyContent: "center" }}
+          >
             <button onClick={handleCloseErrorModal}>OK</button>
           </div>
         </Modal>
@@ -131,4 +147,3 @@ const RegisterClient = ({onCancel}) => {
 };
 
 export default RegisterClient;
-

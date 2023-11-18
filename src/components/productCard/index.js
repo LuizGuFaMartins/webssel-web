@@ -4,11 +4,12 @@ import uuid from "react-uuid";
 import minus from "../../assets/svg/minus.svg";
 import plus from "../../assets/svg/plus.svg";
 
+import env from "react-dotenv";
 import { io } from "socket.io-client";
 import "./styles.css";
 
 const ProductCard = ({ product, setDeleteId }) => {
-  const socket = React.useMemo(() => io("http://localhost:3333"), []);
+  const socket = React.useMemo(() => io(`${env.BASE_URL}`), []);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isBuyModalOpen, setIsBuyModalOpen] = React.useState(false);
   const [quantity, setQuantity] = React.useState(0);
@@ -40,7 +41,7 @@ const ProductCard = ({ product, setDeleteId }) => {
       itemCode: uuid().split("-")[0],
       productId: product.productId,
       itemQuantity: quantity,
-      clientId: 1,
+      clientId: localStorage.getItem("clientId"),
       product: product,
     };
 
@@ -59,12 +60,14 @@ const ProductCard = ({ product, setDeleteId }) => {
         <span>{product.productCode}</span>
       </div>
       <div className="form-group">
-        <label>Produto: <span className="span-label">{product.productName}</span></label>
-        
+        <label>
+          Produto: <span className="span-label">{product.productName}</span>
+        </label>
       </div>
       <div className="form-group">
-        <label>Preço: <span className="span-label">R${product.productPrice}</span></label>
-        
+        <label>
+          Preço: <span className="span-label">R${product.productPrice}</span>
+        </label>
       </div>
       <div className="buttons-box">
         <button type="primary" onClick={showModal} className="btn-buy">

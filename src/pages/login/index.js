@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
-import "./stylesLogin.css"
+import React, { useState } from "react";
+import env from "react-dotenv";
+import { useNavigate } from "react-router-dom";
+import bg from "../../assets/images/bg2.jpg";
 import logoIcon from "../../assets/images/logo-icon.png";
-import bg from "../../assets/images/bg2.jpg"
 import RegisterClient from "../createUser";
+import "./stylesLogin.css";
 const Login = () => {
   const navigate = useNavigate();
 
@@ -13,20 +14,18 @@ const Login = () => {
   const [errorModalVisible, setErrorModalVisible] = useState(false);
 
   const handleNavigateToCadastro = () => {
-    setRegisterModalVisible(true); 
-
+    setRegisterModalVisible(true);
   };
 
   const handleCloseRegisterModal = () => {
     setRegisterModalVisible(false);
   };
 
-  const [registerModalVisible, setRegisterModalVisible] = useState(false); 
-
+  const [registerModalVisible, setRegisterModalVisible] = useState(false);
 
   const handleLogin = async () => {
     try {
-      const response = await fetch("http://localhost:3333/auth/login", {
+      const response = await fetch(`${env.BASE_URL}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,9 +53,7 @@ const Login = () => {
   };
 
   return (
-
     <div className="div-tela">
-
       <div className="div-left">
         <img className="img-bg" src={bg}></img>
       </div>
@@ -81,7 +78,9 @@ const Login = () => {
                 value={clientPassword}
                 onChange={(e) => setClientPassword(e.target.value)}
               />
-              <button className="botao-entrar" onClick={handleLogin}>Entrar</button>
+              <button className="botao-entrar" onClick={handleLogin}>
+                Entrar
+              </button>
               <p>
                 Não tem uma conta?{" "}
                 <span className="span" onClick={handleNavigateToCadastro}>
@@ -90,7 +89,7 @@ const Login = () => {
               </p>
             </div>
 
-            <Modal 
+            <Modal
               title="Credenciais inválidas"
               open={errorModalVisible}
               onOk={handleCloseErrorModal}
@@ -98,14 +97,20 @@ const Login = () => {
               centered
               footer={null}
             >
-              <p>As credenciais fornecidas são inválidas. Por favor, tente novamente.</p>
-              <div className="modal-buttons" style={{ display: "flex", justifyContent: "center" }}>
+              <p>
+                As credenciais fornecidas são inválidas. Por favor, tente
+                novamente.
+              </p>
+              <div
+                className="modal-buttons"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <button onClick={handleCloseErrorModal}>OK</button>
               </div>
             </Modal>
 
             <Modal
-            className="modal-cad"
+              className="modal-cad"
               open={registerModalVisible}
               onOk={handleCloseRegisterModal}
               onCancel={handleCloseRegisterModal}
@@ -114,15 +119,11 @@ const Login = () => {
             >
               <RegisterClient onCancel={handleCloseRegisterModal} />
             </Modal>
-
           </div>
         </div>
       </div>
-
     </div>
-
   );
-
 };
 
 export default Login;

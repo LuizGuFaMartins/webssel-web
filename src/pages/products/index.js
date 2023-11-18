@@ -1,10 +1,11 @@
 import React from "react";
+import env from "react-dotenv";
 import { io } from "socket.io-client";
 import ProductCard from "../../components/productCard";
 import "./styles.css";
 
 const Product = () => {
-  const socket = React.useMemo(() => io("http://localhost:3333"), []);
+  const socket = React.useMemo(() => io(`${env.BASE_URL}`), []);
 
   const [products, setProducts] = React.useState([]);
   const [filteredProducts, setFilteredProducts] = React.useState([]);
@@ -12,10 +13,6 @@ const Product = () => {
   const [deleteId, setDeleteId] = React.useState(0);
 
   React.useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Connected...");
-    });
-
     function receiveProducts(prods) {
       setProducts([...prods]);
       setFilteredProducts([...prods]);
@@ -24,6 +21,14 @@ const Product = () => {
     socket.on("refreshProductsList", (prods) => {
       receiveProducts(prods);
     });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket]);
+
+  React.useEffect(() => {
+    socket.connect();
   }, [socket]);
 
   React.useEffect(() => {

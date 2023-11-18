@@ -6,7 +6,8 @@
 .product-card .card-body .buttons-box {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -16,9 +17,11 @@
   border: none;
   cursor: pointer;
   margin-top: 2%;
+  margin-right: 5px;
+  margin-left: 5px;
   cursor: pointer;
   width: 46%;
-  min-width: 140px;
+  min-width: 120px;
 }
 
 .product-card .card-body .buttons-box button:nth-of-type(1) {

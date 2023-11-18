@@ -1,10 +1,11 @@
 import React from "react";
+import env from "react-dotenv";
 import { io } from "socket.io-client";
 import PaymentCard from "../../components/paymentCard";
 import "./styles.css";
 
 const Payments = () => {
-  const socket = React.useMemo(() => io("http://localhost:3333"), []);
+  const socket = React.useMemo(() => io(`${env.BASE_URL}`), []);
 
   const [payment, setPayments] = React.useState([]);
   const [filteredPayments, setFilteredPayments] = React.useState([]);
@@ -12,19 +13,23 @@ const Payments = () => {
   const [deleteId, setDeleteId] = React.useState(0);
 
   React.useEffect(() => {
-    socket.on("connect", () => {
-      console.log("Connected...");
-    });
-
     function receivePayments(pay) {
       setPayments([...pay]);
       setFilteredPayments([...pay]);
     }
-    socket.emit("listPayments", localStorage.getItem("clientId"));
+
+    socket.emit("listPayments", { clientId: localStorage.getItem("clientId") });
     socket.on("refreshPaymentsList", (pay) => {
-      console.log(pay)
       receivePayments(pay);
     });
+    
+    return () => {
+      socket.disconnect();
+    };
+  }, [socket]);
+
+  React.useEffect(() => {
+    socket.connect();
   }, [socket]);
 
   React.useEffect(() => {
@@ -36,17 +41,18 @@ const Payments = () => {
   }, [deleteId]);
 
   async function deletePayment() {
-    socket.emit("deletePayment", deleteId);
+    socket.emit("deletePayment", {
+      paymentId: deleteId,
+      clientId: localStorage.getItem("clientId"),
+    });
     const filter = payment.filter((payment) => payment.paymentId !== deleteId);
     setFilteredPayments(filter);
   }
 
   function onSearch(value) {
     setSearch(value);
-    if (value != "") {
-      const filter = payment.filter((pay) =>
-        pay.orderId == value
-      );
+    if (value !== "") {
+      const filter = payment.filter((pay) => pay.orderId === value);
       setFilteredPayments(filter);
     } else {
       setFilteredPayments(payment);
@@ -54,9 +60,9 @@ const Payments = () => {
   }
 
   return (
-    <div className="product-container">
+    <div className="payment-container">
       <div className="search-bar">
-      <input
+        <input
           value={search}
           onChange={({ target }) => onSearch(target.value)}
           type="text"
@@ -64,10 +70,10 @@ const Payments = () => {
         />
         <div className="glass"></div>
       </div>
-      <div className="product-boxcard">
+      <div className="payment-boxcard">
         {filteredPayments.length > 0 &&
           filteredPayments.map((pay) => (
-            <div key={pay.paymentId} className="product-card">
+            <div key={pay.paymentId} className="payment-card">
               <PaymentCard payment={pay} setDeleteId={setDeleteId} />
             </div>
           ))}

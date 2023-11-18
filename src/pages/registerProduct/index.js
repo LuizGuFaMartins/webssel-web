@@ -1,11 +1,12 @@
 import { Modal } from "antd";
 import React from "react";
+import env from "react-dotenv";
 import uuid from "react-uuid";
 import { io } from "socket.io-client";
 import "./styles.css";
 
 const RegisterProduct = () => {
-  const socket = React.useMemo(() => io("http://localhost:3333"), []);
+  const socket = React.useMemo(() => io(`${env.BASE_URL}`), []);
   const [codigo, setCodigo] = React.useState("");
   const [nome, setNome] = React.useState("");
   const [preco, setPreco] = React.useState("");
