@@ -89,9 +89,10 @@ function ShoppingCart() {
       )
       .then((orders) => {
         axios
-          .patch(
-            `${env.BASE_URL}/orders/finish-order/${orders.data[0].orderId}`
-          )
+          .post(`${env.BASE_URL}/orders/finish-order`, {
+            orderId: orders.data[0].orderId,
+            orderTotalPrice: totalValue,
+          })
           .then(() => {
             socket.emit("listItens", {
               clientId: localStorage.getItem("clientId"),

@@ -8,6 +8,7 @@ const RegisterClient = ({ onCancel }) => {
   const baseUrl = env.BASE_URL;
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
+  const [clientCpf, setClientCpf] = useState("");
   const [clientPassword, setClientPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorModalVisible, setErrorModalVisible] = useState(false);
@@ -23,6 +24,10 @@ const RegisterClient = ({ onCancel }) => {
 
   const handleClientEmailChange = (event) => {
     setClientEmail(event.target.value);
+  };
+
+  const handleClientCpfChange = (event) => {
+    setClientCpf(event.target.value);
   };
 
   const handleConfirmPasswordChange = (event) => {
@@ -55,6 +60,7 @@ const RegisterClient = ({ onCancel }) => {
         clientName: clientName,
         clientPassword: clientPassword,
         clientEmail: clientEmail,
+        clientCpf: clientCpf,
       })
       .then(() => {
         console.log("Cliente cadastrado");
@@ -90,6 +96,17 @@ const RegisterClient = ({ onCancel }) => {
             id="clientEmail"
             value={clientEmail}
             onChange={handleClientEmailChange}
+          />
+        </div>
+        <div className="input-group">
+          <label htmlFor="clientCpf" className="label-fixed-width">
+            CPF:
+          </label>
+          <input
+            type="text"
+            id="clientCpf"
+            value={clientCpf}
+            onChange={handleClientCpfChange}
           />
         </div>
         <div className="input-group">
